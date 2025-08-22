@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+#include<vector>
+class Solution {
+public:
+
+    bool palindrome(string ss) {
+    int n = ss.size();
+    int i = 0, j = n - 1;
+
+    while (i < j) {
+        if (ss[i] != ss[j]) {
+            return false;  // mismatch found
+        }
+        i++;
+        j--;
+    }
+
+    return true; // no mismatches, so it's a palindrome
+}
+    string longestPalindrome(string s) {
+        int n =  s.size();
+        vector<string> pss;
+        for(int i = 0; i< n ; i++){
+            string temp = "";
+            for(int j  = i;j<n;j++){
+                temp+=s[j];
+
+                pss.push_back(temp);
+            }
+        }
+
+        string longest= "";
+
+        for(auto i : pss){
+            if(palindrome(i)){
+                if(i.size() > longest.size()){
+                    longest = i;
+                }
+            }
+        }
+
+        return longest;
+    }
+};
+
+
+// but it will not pass all the test cases because it exceeds time limit its time complexity is  O(n^3)
