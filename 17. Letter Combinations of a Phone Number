@@ -1,0 +1,53 @@
+class Solution {
+public:
+void solve(string str, string output , int index , vector<string> & ans,string arr[]){
+
+    // base case
+    if (index >= str.length()){
+        ans.push_back(output);
+
+        return ;
+    }
+
+    int number = str[index] - '0';// we  did '0' because we are changing character to integer if we have to change integer to a character then we have to add '0'
+
+    string value  = arr[number];
+    // means in value we get the string whose sunstring we have to print
+
+
+
+    // now we are going to add the element into output so the output will get pushed in the answer 
+    for(int i = 0;i<value.length();i++){
+        output.push_back(value[i]);
+
+
+        solve(str,output,index+1,ans,arr);
+
+    // we did this because once it work for 2 then we have to backtrack and delete it and now we will do for another index
+
+        output.pop_back();
+    }
+	
+}
+    vector<string> letterCombinations(string str) {
+
+        string arr[10] = {" "," ","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+
+    vector<string>ans;
+    int index = 0;
+    string output = "";
+    if(str.length() == 0){
+        return ans;
+    }
+    solve(str , output, index , ans , arr);
+
+    return ans;
+
+
+        
+    }
+};
+
+
+
+// this one is important because it do the backtracking
