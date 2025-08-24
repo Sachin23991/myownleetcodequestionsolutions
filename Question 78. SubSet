@@ -1,0 +1,40 @@
+class Solution {
+public:
+    void solve(vector<int> nums , vector<int> output , int index , vector<vector<int>>& ans){
+
+        // for recurssion we have to write two main things 
+    // first base case through which it is going to be free out of the functoin and other is the recurssion comands
+    if(index >= nums.size()){
+        ans.push_back(output);
+        return ;
+    }
+
+    // now we are going to exclude ones
+
+    solve(nums,output , index + 1 , ans);
+
+    // now we are going to include that index in the output and after that the output will be get pushed back in answer
+
+    //now we hae to include a element 
+
+    int ele = nums[index];
+    output.push_back(ele);
+
+    solve(nums,output,index+1,ans);
+
+    }
+    vector<vector<int>> subsets(vector<int>& nums) {
+        // for finding subset 
+
+        // first we create an array that stores the answer
+        vector<vector<int>> ans;
+// it stores the subset that is going to be pushed in answer
+        vector<int> output;
+        int index = 0;
+
+
+        solve(nums,output,index , ans);
+
+        return ans;
+    }
+};
