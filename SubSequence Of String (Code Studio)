@@ -1,0 +1,35 @@
+#include <bits/stdc++.h> 
+void solve(string str, string output , int index , vector<string> & ans){
+
+	// first we are going to solve the base case
+
+	if(index >= str.length()){
+		if(output.length() > 0){
+		ans.push_back(output);
+		}
+		return ;
+	}
+
+	// now we are going to do the condition for excluding
+
+	solve(str,output,index+1,ans);
+
+	// now weare going to include the data into output
+
+	char ele = str[index];
+	output+=ele;
+	solve(str,output,index+1,ans);
+}
+vector<string> subsequences(string str){
+	
+	// Write your code here
+	vector<string> ans;
+
+	string output = "";// in this i store the current answer that is going to be pushed in the real answer vector
+
+	int index = 0;
+
+	solve(str,output,index,ans);
+
+	return ans;
+}
