@@ -1,0 +1,25 @@
+class Solution {
+public:
+    
+int dp[1001]; // dp[tar] = number of ways to form tar
+
+int solve(vector<int>& num, int tar) {
+    if (tar == 0) return 1; // one valid way (empty sequence that completed sum)
+    if (tar < 0) return 0;
+
+    if (dp[tar] != -1) return dp[tar];
+
+    long long ways = 0;
+    for (int x : num) {
+        ways += solve(num, tar - x);  // choose any number, order matters
+    }
+
+    return dp[tar] = ways;
+}
+
+int combinationSum4(vector<int>& num, int tar) {
+    memset(dp, -1, sizeof(dp));
+    return solve(num, tar);
+}
+
+};
