@@ -1,0 +1,22 @@
+
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        
+        // The thing is thast first we need to have knowledge of recurssion then we can do such type o question merge two sorted list there are two approaches one is recursive approach and another is iterative approach we will gowith recurssive approach
+
+        // first we go with the th9inking is that if one list is not present we return another list
+
+        if(!list1) return list2;
+        if(!list2) return list1;
+
+        if(list1->val < list2->val){
+            list1->next = mergeTwoLists(list1->next, list2);
+        }else{
+            list2->next = mergeTwoLists( list1,list2->next );
+        }
+        
+
+        return list2;
+    }
+};
