@@ -13,3 +13,22 @@ int firstMissing(int arr[], int n) {
     }
     return n + 1;
 }
+
+
+
+class Solution {
+public:
+    int firstMissingPositive(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+
+        int smallest = 1;  // we always start looking for 1
+
+        for (int x : nums) {
+            if (x == smallest) {
+                smallest++;  // found current target, move to next
+            }
+        }
+
+        return smallest;  // the first missing positive
+    }
+};
