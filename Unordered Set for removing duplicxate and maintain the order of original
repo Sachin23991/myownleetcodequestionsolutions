@@ -1,0 +1,12 @@
+#include<unordered_set>
+vector<int> removeDuplicates(vector<int> arr) {
+    unordered_set<int> seen;
+    vector<int> v;
+    for (int x : arr) {
+        if (seen.find(x) == seen.end()) { // not seen before
+            v.push_back(x);
+            seen.insert(x);
+        }
+    }
+    return v;
+}
