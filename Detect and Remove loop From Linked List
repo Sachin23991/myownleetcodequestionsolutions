@@ -1,0 +1,40 @@
+we will do with two methd first one take minimum time complexity which is bit complex but highly recommended
+
+Node *removeLoop(Node *head) {
+    if (!head || !head->next) return head;
+
+    Node *slow = head, *fast = head;
+
+    // Step 1: Detect loop
+    while (fast && fast->next) {
+        slow = slow->next;
+        fast = fast->next->next;
+        if (slow == fast) break; // loop found
+    }
+
+    // No loop
+    if (slow != fast) return head;
+
+    // Step 2: Find start of loop
+    slow = head;
+    if (slow == fast) {
+        // Case: loop starts at head
+        while (fast->next != slow) fast = fast->next;
+    } else {
+        while (slow->next != fast->next) {
+            slow = slow->next;
+            fast = fast->next;
+        }
+    }
+
+    // Step 3: Remove loop
+    fast->next = NULL;
+
+    return head;
+}
+
+
+
+Now we will do the second method in which we have simpler but hae higher time complexity
+
+
