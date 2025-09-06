@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int n = nums.size();
+        if (n <= 2) return n; // already valid
+
+        int index = 2; // start writing from the 3rd position
+        for (int i = 2; i < n; i++) {
+            // Only keep nums[i] if it is not equal to nums[index-2]
+            if (nums[i] != nums[index - 2]) {
+                nums[index] = nums[i];
+                index++;
+            }
+        }
+        return index; // length of valid part
+    }
+};
