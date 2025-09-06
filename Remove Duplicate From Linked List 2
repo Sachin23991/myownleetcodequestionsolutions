@@ -1,0 +1,34 @@
+class Solution {
+public:
+    // ✅ Corrected: this now inserts at the END
+    void insertatend(ListNode* &head, int data) {
+        if (head == NULL) {
+            head = new ListNode(data);
+            return;
+        }
+        ListNode* temp = head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = new ListNode(data);
+    }
+
+    ListNode* deleteDuplicates(ListNode* head) {
+        map<int, int> freq;  // ✅ use ordered map (keeps ascending order)
+
+        ListNode* temp = head;
+        while (temp) {
+            freq[temp->val]++;
+            temp = temp->next;
+        }
+
+        ListNode* newlist = NULL;
+        for (auto it : freq) {
+            if (it.second == 1) {
+                insertatend(newlist, it.first);  // ✅ maintains order
+            }
+        }
+
+        return newlist;
+    }
+};
