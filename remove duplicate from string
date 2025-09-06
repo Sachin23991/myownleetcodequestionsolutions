@@ -1,0 +1,15 @@
+#include<bits/stdc++.h>
+#include<vector>
+#include<map>
+string removeDuplicates(string str, int n)
+{
+    //Write your code here.
+    string temp = "";
+
+    for(int i  = 0 ; i<n;i++){
+        if(temp.find(str[i])== string::npos){
+            temp += str[i];
+        }
+    }
+    return temp;
+}
