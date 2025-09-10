@@ -51,3 +51,7 @@ void solve(string str, string output , int index , vector<string> & ans,string a
 
 
 // this one is important because it do the backtracking
+
+
+
+
