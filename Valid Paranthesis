@@ -1,0 +1,38 @@
+class Solution {
+public:
+    bool isValid(string s) {
+
+        // we have to use stack for doing this question
+
+        stack<char> c;
+
+        for(char a : s){
+            // now first we puch the elements into stack
+
+            if(a == '(' || a == '{' || a== '['){
+                // now we push into the stack
+
+                c.push(a);
+            }else{
+
+                // now we will check if we have the closing parantheses or not
+                if(c.empty()) return false;
+                char top = c.top();
+                // we will store the top element of the stack
+
+                // we stored the top element now we will pop the elements
+                c.pop();
+                
+
+                if(a == ')' && top != '('
+                || a == '}' && top != '{'
+                || a == ']' && top!= '['){
+                    return false;
+                }
+            }
+        }
+
+        return c.empty();
+        
+    }
+};
