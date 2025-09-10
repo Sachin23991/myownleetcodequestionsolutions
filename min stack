@@ -1,0 +1,27 @@
+class MinStack {
+public:
+    vector<int> st;       // main stack
+    //vector<int> minSt;    // helper stack to track min
+
+    MinStack() {
+    }
+    
+    void push(int val) {
+        st.push_back(val);
+        // If minSt is empty or val <= current min, push it
+        
+    }
+    
+    void pop() {
+        
+        st.pop_back();
+    }
+    
+    int top() {
+        return st.back();
+    }
+    
+    int getMin() {
+        return *min_element(st.begin(),st.end());
+    }
+};
