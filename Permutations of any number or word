@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void permute(string s, int l, int r, vector<string> &result) {
+    if (l == r) {
+        result.push_back(s);
+        return;
+    }
+    for (int i = l; i <= r; i++) {
+        swap(s[l], s[i]);              // choose
+        permute(s, l + 1, r, result);  // explore
+        swap(s[l], s[i]);              // backtrack
+    }
+}
+
+int main() {
+    string s;
+    cin >> s;
+
+    vector<string> result;
+    permute(s, 0, s.size() - 1, result);
+
+    // Print all permutations
+    for (auto &p : result) {
+        cout << p << "\n";
+    }
+
+    return 0;
+}
