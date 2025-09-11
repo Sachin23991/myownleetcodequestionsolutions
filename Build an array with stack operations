@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<string> buildArray(vector<int>& target, int n) {
+        // hame ye karna h ki hame target pana h 
+
+        // the thing is that the array should be in the rage of 1 to n 
+        vector<string>v;
+        int j  = 0;
+        for(int i  = 1;i<=n;i++){
+            if(i == target[j]){
+                v.push_back("Push");
+                j++;
+            }else{
+                v.push_back("Push");
+                v.push_back("Pop");
+            }
+
+            if(j == target.size()){
+                break;
+            }
+        }
+        return v;
+    }
+};
