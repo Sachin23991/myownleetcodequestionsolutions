@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void reverseStringWordWise(char input[]) {
+    vector<string> v;
+    int n = strlen(input);
+
+    string temp = "";
+    for (int i = 0; i < n; i++) {
+        if (input[i] != ' ') {
+            temp += input[i];
+        } else {
+            v.push_back(temp);
+            temp = "";
+        }
+    }
+
+    // Push last word if any
+    if (!temp.empty()) {
+        v.push_back(temp);
+    }
+
+    // Reverse the order of words
+    reverse(v.begin(), v.end());
+
+    // Rebuild the string into input[]
+    string result = "";
+    for (int i = 0; i < v.size(); i++) {
+        result += v[i];
+        if (i < v.size() - 1) result += " ";
+    }
+
+    // Copy back to char array
+    strcpy(input, result.c_str());
+}
