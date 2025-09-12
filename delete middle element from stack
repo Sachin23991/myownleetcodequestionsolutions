@@ -1,0 +1,26 @@
+
+#include <bits/stdc++.h> 
+using namespace std;
+
+void deleteMiddle(stack<int> &inputStack, int N) {
+    stack<int> s1;
+
+    int size = N + 1; // actual stack size
+    int mid = size / 2; // 0-based index from bottom
+
+    // Step 1: reverse the stack into s1
+    while (!inputStack.empty()) {
+        s1.push(inputStack.top());
+        inputStack.pop();
+    }
+
+    // Step 2: rebuild inputStack while skipping middle element
+    for (int i = 0; i < size; i++) {
+        int top = s1.top();
+        s1.pop();
+        if (i == mid) {
+            continue; // skip middle element
+        }
+        inputStack.push(top);
+    }
+}
