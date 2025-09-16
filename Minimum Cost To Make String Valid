@@ -1,0 +1,36 @@
+#include <bits/stdc++.h> 
+int findMinimumCost(string str) {
+  // Write your code here
+  int n = str.size();
+
+  if(n%2 != 0) return -1;
+    stack<char> st;
+
+    for(auto c : str){
+
+        if(c == '{'){
+            st.push(c);
+        }else{
+
+            if(!st.empty() && st.top() == '{'){
+                st.pop(); // we matched the pair
+            }else{
+                st.push(c);
+                // now we only have unmatched
+            }
+
+        }
+    }
+
+    int open = 0; 
+    int close  = 0;
+
+    while(!st.empty()){
+        if(st.top() == '{') open++;
+        else close++;
+
+        st.pop();
+    }
+
+     return (open + 1) / 2 + (close + 1) / 2;
+}
