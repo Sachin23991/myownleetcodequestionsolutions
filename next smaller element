@@ -1,0 +1,26 @@
+vector<int> findnextsmallerindex(vector<int> arr, int n){
+        vector<int>ans(n , -1);
+
+        stack<int> st;
+        // intitaily stack is always empty
+
+        for(int i  = n-1 ; i>=0 ; i--){
+            // we are starting from right because we have to find next smaller element not previous
+
+            while(!st.empty() && arr[st.top()] >= arr[i]){
+                // means in this we are checking wether the number at index that we are storing in stack wether the number is greater or lower if it is greater or equal how can we find the next smallest so we pop out the index
+
+                st.pop();
+            }
+
+            if(!st.empty()){
+                // we poped the number which is equal or greater than the number so now the index if they are remaining into the stack means these are definately the smaller element indexes
+
+                ans[i] = st.top();
+            }
+
+            st.push(i);
+        }
+        return ans;
+
+    }
