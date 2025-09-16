@@ -1,0 +1,76 @@
+class Solution {
+public:
+    vector<int> findnextsmallerindex(vector<int> arr, int n){
+        vector<int>ans(n , -1);
+
+        stack<int> st;
+        // intitaily stack is always empty
+
+        for(int i  = n-1 ; i>=0 ; i--){
+            // we are starting from right because we have to find next smaller element not previous
+
+            while(!st.empty() && arr[st.top()] >= arr[i]){
+                // means in this we are checking wether the number at index that we are storing in stack wether the number is greater or lower if it is greater or equal how can we find the next smallest so we pop out the index
+
+                st.pop();
+            }
+
+            if(!st.empty()){
+                // we poped the number which is equal or greater than the number so now the index if they are remaining into the stack means these are definately the smaller element indexes
+
+                ans[i] = st.top();
+            }
+
+            st.push(i);
+        }
+        return ans;
+
+    }
+    vector<int> findprevioussmallerindex(vector<int> arr, int n) {
+    vector<int> ans(n, -1);  // default = -1 (no smaller element to the left)
+    stack<int> st;           // stack stores indices
+
+    for (int i = 0; i < n; i++) {  // left to right
+        // Pop all indices whose value is >= current value
+        while (!st.empty() && arr[st.top()] >= arr[i]) {
+            st.pop();
+        }
+
+        if (!st.empty()) {
+            // If stack is not empty, top is the index of the previous smaller element
+            ans[i] = st.top();
+        }
+
+        // Push current index into stack
+        st.push(i);
+    }
+
+    return ans;
+}
+
+    int largestRectangleArea(vector<int>& heights) {
+        // in this we first find the indexes so that we can find the breadth of the rectangle as the length are given as height 
+        int n = heights.size();
+        vector<int> next(n);
+        next = findnextsmallerindex(heights , n);
+        vector<int>prev(n);
+        prev = findprevioussmallerindex(heights,n);
+
+
+        int area = INT_MIN;
+
+        for(int i  = 0 ;i<n;i++){
+            int l = heights[i];
+            if(next[i] == -1){
+                next[i] = n;
+            }
+            int b = next[i]-prev[i]-1;
+
+            
+
+            int narea = l*b;
+            area = max(narea, area);
+        }
+        return area;
+    }
+};
