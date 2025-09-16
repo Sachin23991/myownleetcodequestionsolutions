@@ -1,0 +1,43 @@
+// In this question the knows function is already being implemented we just have to check wether the candidate we will choose is celebrity or not
+
+
+int findCelebrity(int n){
+
+// we first choose a candidate 
+
+int candidate = 0;
+
+for(int i  = 1 ;i<n;i++){
+
+if(knows(candidate , i){
+		// if it is true than it is not the suitable candidate because the celebrity does not know any other but every other should know the celebrity
+
+	// so it is not the celebrity
+
+	candidate = i;
+}
+// now the candidate remaining may be celebrity or not
+
+}
+
+// validating the candidate
+
+for(int i  = 0 ;i < n  ; i++){
+
+if( i == candidate) continue; // means it is the index of the candidate 
+
+// now we check
+
+if(knows(candidate,i) || !knows(i,candidate)){
+return -1;
+}
+
+
+}
+
+// now we found or candidate  so we will return it 
+
+return candidate;
+}
+
+
