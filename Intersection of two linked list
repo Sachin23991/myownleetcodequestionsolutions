@@ -1,0 +1,29 @@
+The thing is that we will not compare the value we compare the node the mistake i did earlier is that i am comparing the node values not node
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        if (!headA || !headB) return NULL;
+
+        ListNode* pA = headA;
+        ListNode* pB = headB;
+
+        // traverse both lists
+        while (pA != pB) {
+            // move to next, or switch to the other list's head
+            pA = (pA == NULL) ? headB : pA->next;
+            pB = (pB == NULL) ? headA : pB->next;
+        }
+
+        // either intersection node or NULL
+        return pA;
+    }
+};
