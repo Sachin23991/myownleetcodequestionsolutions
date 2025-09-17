@@ -1,0 +1,27 @@
+In this we have to delte we are only  given node and not head so we dont have acess to the head in a single linked list so how we delete that for that i am writing the code
+  /**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+    if (node == NULL || node->next == NULL) {
+        // cannot delete if it's the last node
+    return;
+    }
+    ListNode* temp = node->next;// we stored the next value
+    node->val = temp->val;      // copy value from next
+    node->next = temp->next;// we make the next element as now one
+    // now we can delte the temp
+    delete temp;
+
+
+
+
+    }
+};
