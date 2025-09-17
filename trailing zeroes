@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int trailingZeroes(int n) {
+        int answer = 0;  // This will store the final number of trailing zeros
+        int i = 5;       // Start with smallest power of 5
+        // Loop over all powers of 5 up to n
+        while (n >= i) {
+            answer += (n / i); // Add number of multiples of current power of 5
+            i *= 5;            // Move to next power of 5 (25, 125, ...)
+        }
+        return answer;        // Final count of trailing zeros in n!
+    }
+};
