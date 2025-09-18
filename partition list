@@ -1,0 +1,34 @@
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        // Create dummy heads
+        ListNode* lessHead = new ListNode(0);
+        ListNode* greaterHead = new ListNode(0);
+
+        // Tails
+        ListNode* lessTail = lessHead;
+        ListNode* greaterTail = greaterHead;
+
+        ListNode* temp = head;
+
+        while (temp != nullptr) {
+            if (temp->val < x) {
+                lessTail->next = temp;      // attach to 'less' list
+                lessTail = lessTail->next;  // move tail
+            } else {
+                greaterTail->next = temp;       // attach to 'greater' list
+                greaterTail = greaterTail->next;// move tail
+            }
+            temp = temp->next;
+        }
+
+        // Connect the two lists
+        lessTail->next = greaterHead->next;
+
+        // End the greater list properly
+        greaterTail->next = nullptr;
+
+        // Return new head (skip dummy node)
+        return lessHead->next;
+    }
+};
