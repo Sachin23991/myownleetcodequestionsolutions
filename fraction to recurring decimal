@@ -1,0 +1,62 @@
+class Solution {
+public:
+    string fractionToDecimal(int numerator, int denominator) {
+        if(numerator == 0) return "0";
+       
+
+        // we would find the sogn first 
+
+        string res;
+        // we handled the sign
+        if(( numerator < 0) ^ (denominator < 0)) res += "-";
+
+        // we make it absolute and in long so it will not overflow for integer
+
+        long num = labs(numerator);
+        long den = labs(denominator);
+
+        // we make the absolute numerator and denominator we would find first the integer value
+
+        res += to_string(num / den);
+        // we inserted the integer part into the result
+
+        long rem = num % den; // we would find the denominator 
+
+        if(rem == 0) return res; // because we know its finite and we return the result 
+
+        // now we will find when the result is infinte
+
+        // first we know the numbers are infinite after the .
+
+        // so
+
+        res += ".";
+
+        unordered_map<long , int > mp;
+        // we store the occurence if we see the twice approaching we 
+        while(rem){
+
+            if(mp.count(rem))// this means we alredy seen it once
+            {
+                res.insert(mp[rem],"(");
+
+                res+=")";
+                break;
+                // means we already seen it and append or we inserted it at its right poisition
+
+            }
+
+            mp[rem] = res.size();
+            // after division we dont have anything so we include 0 to find next rem that what we are going to do in this
+
+            rem *= 10;
+
+            res+= to_string(rem / den);
+
+            rem %= den;
+        }
+
+        return res;
+
+    }
+};
